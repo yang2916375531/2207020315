@@ -1,0 +1,51 @@
+data class User(var useAvatar: Int,var userName: String,var userBio: String,var userData: String)
+
+@Composable
+fun UserCard(user: User) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically, modifier = Modifier
+            .padding(bottom = 10.dp)
+            .fillMaxWidth()
+            .size(width = 200.dp, height = 100.dp)
+            .background(Color.White)
+    ) {
+        Box {
+            Image(
+                painter = painterResource(id = user.useAvatar),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(100.dp)
+                    .padding(20.dp)
+                    .clip(CircleShape)
+            )
+        }
+        Column {
+            Text(
+                text = user.userName,
+                style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 18.sp)
+            )
+            Text(text = user.userBio)
+        }
+        Text(text = user.userData, modifier = Modifier.padding(15.dp), color = Color.Gray)
+    }
+
+    @Composable
+    fun UserCredList(){
+        Box {
+            Column {
+                val users = listOf<User>(
+                    User(R.drawable.useravatar1,"韩郑超","简单生活。","1 min ago"),
+                    User(R.drawable.useravatar2,"韩郑超","简单生活。","2 min ago"),
+                    User(R.drawable.useravatar3,"韩郑超","简单生活。","3 min ago"),
+                    User(R.drawable.useravatar4,"韩郑超","简单生活。","4 min ago"),
+                    User(R.drawable.useravatar5,"韩郑超","简单生活。","5 min ago"),
+                    User(R.drawable.useravatar6,"韩郑超","简单生活。","6 min ago"),
+                    User(R.drawable.useravatar7,"韩郑超","简单生活。","7 min ago"),
+                )
+                repeat(users.size) { index ->
+                    UserCard(users[index])
+                }
+            }
+        }
+    }
+}
